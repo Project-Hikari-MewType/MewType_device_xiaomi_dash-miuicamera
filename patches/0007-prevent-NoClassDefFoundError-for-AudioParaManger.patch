@@ -1,0 +1,44 @@
+From 39847adff70b1209fc0851bffc5e41551a48ec08 Mon Sep 17 00:00:00 2001
+From: Hexaboo <hexaboo@luminedroid.org>
+Date: Thu, 13 Aug 2026 19:49:45 +0000
+Subject: [PATCH 7/7] prevent NoClassDefFoundError for AudioParaManger
+
+Bypass AudioParaManger initialization in Ly1/a constructors to prevent
+app crashes on AOSP where vendor-specific audio classes
+are missing.
+
+Since all calling methods in Ly1/a include null checks for the internal
+AudioParaManger instance (p0->a), early returning allows the camera module
+to fall back gracefully without breaking video recording functionality.
+
+Change-Id: I419d7cead311898aa5a24e52cef0290ba6ba8b99
+Signed-off-by: Hexaboo <hexaboo@luminedroid.org>
+---
+ smali/y1/a.smali | 4 ++++
+ 1 file changed, 4 insertions(+)
+
+diff --git a/smali/y1/a.smali b/smali/y1/a.smali
+index 9035cc29..7a9d0229 100644
+--- a/smali/y1/a.smali
++++ b/smali/y1/a.smali
+@@ -54,6 +54,8 @@
+     .line 6
+     iput-object v0, p0, Ly1/a;->a:Ljava/lang/Object;
+ 
++    return-void
++
+     .line 7
+     invoke-static {}, Ly1/a;->h()Z
+ 
+@@ -95,6 +97,8 @@
+     .line 2
+     iput-object v0, p0, Ly1/a;->a:Ljava/lang/Object;
+ 
++    return-void
++
+     .line 3
+     invoke-static {}, Ly1/a;->h()Z
+ 
+-- 
+2.43.0
+
