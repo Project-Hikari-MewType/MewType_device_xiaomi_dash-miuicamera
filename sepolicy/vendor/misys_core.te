@@ -1,0 +1,7 @@
+type misys_core, domain;
+type misys_core_exec, exec_type, vendor_file_type, file_type;
+
+permissive misys_core;
+
+init_daemon_domain(misys_core)
+allow servicemanager misys_core:binder call;

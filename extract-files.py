@@ -18,7 +18,9 @@ from extract_utils.main import (
 )
 
 namespace_imports = [
+    'device/xiaomi/dash',
     'device/xiaomi/dash-miuicamera',
+    'vendor/xiaomi/dash'
 ]
 
 def lib_fixup_system_ext_suffix(lib: str, partition: str, *args, **kwargs):
@@ -29,18 +31,26 @@ lib_fixups: lib_fixups_user_type = {
     **lib_fixups,
     ('vendor.mediatek.hardware.camera.isphal@1.0',
      'vendor.mediatek.hardware.camera.isphal-V1-ndk',
+     'vendor.xiaomi.hardware.misys.common-V3-ndk',
+     'vendor.xiaomi.hardware.misys.core-V1-ndk',
+     'vendor.xiaomi.hardware.aidlbgservice-V1-ndk',
      'vendor.xiaomi.hardware.bgservice@1.0'): lib_fixup_system_ext_suffix
 }
 
 blob_fixups: blob_fixups_user_type = {
-    (
-        'system_ext/lib64/libcamera_algoup_jni.xiaomi.so',
-        'system_ext/lib64/libcamera_mianode_jni.xiaomi.so',
-        'system_ext/lib64/libcamera_ispinterface_jni.xiaomi.so'
-    ): blob_fixup()
+    'system_ext/priv-app/MiuiCamera/MiuiCamera.apk': blob_fixup()
+        .apktool_patch('patches/'),
+
+    'system_ext/lib64/libcamera_algoup_jni.xiaomi.so': blob_fixup()
+        .add_needed('libgui_shim_miuicamera.so')
+        .sig_replace('08 AD 40 F9', '08 A9 40 F9'),
+    'system_ext/lib64/libcamera_mianode_jni.xiaomi.so': blob_fixup()
         .add_needed('libgui_shim_miuicamera.so'),
-    'system/priv-app/MiuiCamera/MiuiCamera.apk': blob_fixup()
-        .apktool_patch('patches'),
+    'system_ext/lib64/libcamera_ispinterface_jni.xiaomi.so': blob_fixup()
+        .add_needed('libgui_shim_miuicamera.so'),
+
+    'system_ext/lib64/vendor.mediatek.hardware.camera.isphal-V1-ndk.so': blob_fixup()
+        .replace_needed('android.hardware.graphics.common-V6-ndk.so', 'android.hardware.graphics.common-V7-ndk.so'),
 }  # fmt: skip
 
 module = ExtractUtilsModule(
