@@ -1,7 +1,7 @@
 From d151c9ab7bfd7d7c88f40e1f614147e2a4581569 Mon Sep 17 00:00:00 2001
 From: AdarshGrewal <adarshgrewal@gmail.com>
 Date: Wed, 3 Jun 2026 16:42:54 +0530
-Subject: [PATCH 2/7] Load obfuscated resources sanely
+Subject: [PATCH 12/15] Load obfuscated resources sanely
 
 Change-Id: Ib567e0f8a6231cc8e71e8b64ef16232c63875adb
 ---

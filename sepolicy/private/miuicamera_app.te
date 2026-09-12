@@ -1,0 +1,5 @@
+type miuicamera_app, domain, coredomain;
+app_domain(miuicamera_app)
+net_domain(miuicamera_app)
+
+permissive miuicamera_app;
