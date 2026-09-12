@@ -1,7 +1,7 @@
 From 39847adff70b1209fc0851bffc5e41551a48ec08 Mon Sep 17 00:00:00 2001
 From: Hexaboo <hexaboo@luminedroid.org>
 Date: Thu, 13 Aug 2026 19:49:45 +0000
-Subject: [PATCH 7/7] prevent NoClassDefFoundError for AudioParaManger
+Subject: [PATCH 14/15] prevent NoClassDefFoundError for AudioParaManger
 
 Bypass AudioParaManger initialization in Ly1/a constructors to prevent
 app crashes on AOSP where vendor-specific audio classes

@@ -1,0 +1,3 @@
+/vendor/bin/hw/vendor\.xiaomi\.hardware\.misys\.core-service    u:object_r:misys_core_exec:s0
+/vendor/bin/hypsys_vendor                                        u:object_r:hypsys_vendor_exec:s0
+/vendor/lib64/vendor\.xiaomi\.hardware\.misys\.core-V1-ndk\.so  u:object_r:misys_core_exec:s0

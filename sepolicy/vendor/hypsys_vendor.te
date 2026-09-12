@@ -1,0 +1,6 @@
+type hypsys_vendor, domain;
+type hypsys_vendor_exec, exec_type, vendor_file_type, file_type;
+
+permissive hypsys_vendor;
+
+init_daemon_domain(hypsys_vendor)
