@@ -1,0 +1,186 @@
+From 71d3b5d6fb60b7b31664a32f40f2fbc19c1905f1 Mon Sep 17 00:00:00 2001
+From: therealmharc <therealmharc@gmail.com>
+Date: Thu, 10 Sep 2026 23:55:13 +0800
+Subject: [PATCH 02/10] Stub out AudioParaManger for video recording
+
+---
+ .../media/AudioParaManger$EventListener.smali |   2 +
+ .../media/AudioParaManger$TuneListener.smali  |   2 +
+ smali/android/media/AudioParaManger.smali     | 147 ++++++++++++++++++
+ 3 files changed, 151 insertions(+)
+ create mode 100644 smali/android/media/AudioParaManger$EventListener.smali
+ create mode 100644 smali/android/media/AudioParaManger$TuneListener.smali
+ create mode 100644 smali/android/media/AudioParaManger.smali
+
+diff --git a/smali/android/media/AudioParaManger$EventListener.smali b/smali/android/media/AudioParaManger$EventListener.smali
+new file mode 100644
+index 00000000..a121178e
+--- /dev/null
++++ b/smali/android/media/AudioParaManger$EventListener.smali
+@@ -0,0 +1,2 @@
++.class public abstract interface Landroid/media/AudioParaManger$EventListener;
++.super Ljava/lang/Object;
+diff --git a/smali/android/media/AudioParaManger$TuneListener.smali b/smali/android/media/AudioParaManger$TuneListener.smali
+new file mode 100644
+index 00000000..0546f75a
+--- /dev/null
++++ b/smali/android/media/AudioParaManger$TuneListener.smali
+@@ -0,0 +1,2 @@
++.class public abstract interface Landroid/media/AudioParaManger$TuneListener;
++.super Ljava/lang/Object;
+diff --git a/smali/android/media/AudioParaManger.smali b/smali/android/media/AudioParaManger.smali
+new file mode 100644
+index 00000000..d00e09fa
+--- /dev/null
++++ b/smali/android/media/AudioParaManger.smali
+@@ -0,0 +1,147 @@
++.class public Landroid/media/AudioParaManger;
++.super Ljava/lang/Object;
++
++.method public constructor <init>(Landroid/media/AudioRecord;Landroid/content/Context;)V
++    .locals 0
++    invoke-direct {p0}, Ljava/lang/Object;-><init>()V
++    return-void
++.end method
++
++.method public constructor <init>(Landroid/media/MediaRecorder;Landroid/content/Context;)V
++    .locals 0
++    invoke-direct {p0}, Ljava/lang/Object;-><init>()V
++    return-void
++.end method
++
++.method public creatOzoEffect(I)Z
++    .locals 1
++    const/4 v0, 0x0
++    return v0
++.end method
++
++.method public createAudioEffects(I)Z
++    .locals 1
++    const/4 v0, 0x0
++    return v0
++.end method
++
++.method public createAudioObject(Landroid/media/AudioParaManger$EventListener;Landroid/media/AudioParaManger$TuneListener;)V
++    .locals 0
++    return-void
++.end method
++
++.method public createOzo(Landroid/media/AudioParaManger$EventListener;)V
++    .locals 0
++    return-void
++.end method
++
++.method public createOzo(Landroid/media/AudioParaManger$EventListener;Landroid/media/AudioParaManger$TuneListener;)V
++    .locals 0
++    return-void
++.end method
++
++.method public getAudioConfig()[I
++    .locals 1
++    const/4 v0, 0x0
++    return-object v0
++.end method
++
++.method public init(IIIDDDDDZ)Z
++    .locals 1
++    const/4 v0, 0x0
++    return v0
++.end method
++
++.method public prepare()V
++    .locals 0
++    return-void
++.end method
++
++.method public releaseAudioEffect()V
++    .locals 0
++    return-void
++.end method
++
++.method public releaseOzoEffect()V
++    .locals 0
++    return-void
++.end method
++
++.method public setUserGain(D)V
++    .locals 0
++    return-void
++.end method
++
++.method public setAudioFocusAzimuth(D)V
++    .locals 0
++    return-void
++.end method
++
++.method public setAudioFocusAzimuth(DI)V
++    .locals 0
++    return-void
++.end method
++
++.method public setAudioFocusElevation(D)V
++    .locals 0
++    return-void
++.end method
++
++.method public setAudioFocusElevation(DI)V
++    .locals 0
++    return-void
++.end method
++
++.method public setAudioFocusHeight(D)V
++    .locals 0
++    return-void
++.end method
++
++.method public setAudioFocusWidth(D)V
++    .locals 0
++    return-void
++.end method
++
++.method public setAudioWindNoise(Z)V
++    .locals 0
++    return-void
++.end method
++
++.method public setAudioZoomLevel(D)V
++    .locals 0
++    return-void
++.end method
++
++.method public setFocusRegion(IIIII)I
++    .locals 1
++    const/4 v0, 0x0
++    return v0
++.end method
++
++.method public setMaxSupportLevel(I)V
++    .locals 0
++    return-void
++.end method
++
++.method public setRecordType(I)V
++    .locals 0
++    return-void
++.end method
++
++.method public setViewRegion(IIIII)I
++    .locals 1
++    const/4 v0, 0x0
++    return v0
++.end method
++
++.method public start()V
++    .locals 0
++    return-void
++.end method
++
++.method public getAudioLatency()F
++    .locals 2
++    const/4 v0, 0x0
++    int-to-float v0, v0
++    return v0
++.end method
+-- 
+2.55.0
+

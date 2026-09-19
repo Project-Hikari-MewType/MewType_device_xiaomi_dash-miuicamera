@@ -1,0 +1,50 @@
+From c2d454cd3cfe24c9a61b9574db565b9755ae1b0c Mon Sep 17 00:00:00 2001
+From: therealmharc <therealmharc@gmail.com>
+Date: Thu, 10 Sep 2026 23:57:26 +0800
+Subject: [PATCH 07/10] Add video resolution support for 720p/1080p/4K
+
+---
+ smali/X1/Y.smali | 27 +++++++++++++++++++++++++++
+ 1 file changed, 27 insertions(+)
+
+diff --git a/smali/X1/Y.smali b/smali/X1/Y.smali
+index 89d34602..20f93447 100644
+--- a/smali/X1/Y.smali
++++ b/smali/X1/Y.smali
+@@ -863,6 +863,33 @@
+ .method public static z(IILi8/c;)Z
+     .locals 3
+ 
++    const/16 v0, 0x780
++
++    if-ne p0, v0, :cond_check_4k
++
++    const/16 v0, 0x438
++
++    if-ne p1, v0, :cond_check_4k
++
++    const/4 p0, 0x1
++
++    return p0
++
++    :cond_check_4k
++    const/16 v0, 0xf00
++
++    if-ne p0, v0, :cond_check_list
++
++    const/16 v0, 0x870
++
++    if-ne p1, v0, :cond_check_list
++
++    const/4 p0, 0x1
++
++    return p0
++
++    :cond_check_list
++
+     invoke-static {p2}, Li8/d;->a0(Li8/c;)Ljava/util/ArrayList;
+ 
+     move-result-object p2
+-- 
+2.55.0
+

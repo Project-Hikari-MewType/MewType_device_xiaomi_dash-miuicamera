@@ -7,6 +7,3 @@ vendor.camera.aux.packagelist=com.android.camera
 
 # MiuiCamera
 ro.miui.notch=1
-
-# Device
-ro.product.mod_device=dash_global

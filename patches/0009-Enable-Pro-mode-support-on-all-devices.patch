@@ -1,0 +1,60 @@
+From 9781aa7ba7c8836374d6ca7551462ddde8cc9349 Mon Sep 17 00:00:00 2001
+From: therealmharc <therealmharc@gmail.com>
+Date: Thu, 10 Sep 2026 23:57:42 +0800
+Subject: [PATCH 09/10] Enable Pro mode support on all devices
+
+---
+ smali_classes3/lg/b.smali | 37 +++----------------------------------
+ 1 file changed, 3 insertions(+), 34 deletions(-)
+
+diff --git a/smali_classes3/lg/b.smali b/smali_classes3/lg/b.smali
+index 3c439b50..44c5958f 100644
+--- a/smali_classes3/lg/b.smali
++++ b/smali_classes3/lg/b.smali
+@@ -94,40 +94,9 @@
+ .end method
+ 
+ .method public final d()Z
+-    .locals 4
+-
+-    invoke-static {}, Llg/c;->a()Llg/c$c;
+-
+-    move-result-object v0
+-
+-    sget-object v1, Ljava/lang/Boolean;->TRUE:Ljava/lang/Boolean;
+-
+-    sget-object v2, Llg/c;->a:Ljava/util/concurrent/ConcurrentHashMap;
+-
+-    sget-object v3, Ljava/lang/Boolean;->FALSE:Ljava/lang/Boolean;
+-
+-    invoke-virtual {v2, v0, v3}, Ljava/util/concurrent/ConcurrentHashMap;->getOrDefault(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
+-
+-    move-result-object v3
+-
+-    invoke-virtual {v1, v3}, Ljava/lang/Boolean;->equals(Ljava/lang/Object;)Z
+-
+-    move-result v1
+-
+-    if-nez v1, :cond_0
+-
+-    iget-object p0, p0, Llg/b;->a:Lmg/b;
+-
+-    invoke-interface {p0}, Lmg/b;->d()Z
+-
+-    move-result v1
+-
+-    invoke-static {v1}, Ljava/lang/Boolean;->valueOf(Z)Ljava/lang/Boolean;
+-
+-    move-result-object p0
++    .locals 1
+ 
+-    invoke-virtual {v2, v0, p0}, Ljava/util/concurrent/ConcurrentHashMap;->put(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
++    const/4 v0, 0x1
+ 
+-    :cond_0
+-    return v1
++    return v0
+ .end method
+-- 
+2.55.0
+

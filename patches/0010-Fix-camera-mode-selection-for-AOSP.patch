@@ -1,0 +1,25 @@
+From 49e2769aea2a7831afc0f018332b2f946a0c77d9 Mon Sep 17 00:00:00 2001
+From: therealmharc <therealmharc@gmail.com>
+Date: Thu, 10 Sep 2026 23:57:54 +0800
+Subject: [PATCH 10/10] Fix camera mode selection for AOSP
+
+---
+ smali/Lf/d.smali | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/smali/Lf/d.smali b/smali/Lf/d.smali
+index af929a08..87a6b452 100644
+--- a/smali/Lf/d.smali
++++ b/smali/Lf/d.smali
+@@ -181,7 +181,7 @@
+ 
+     if-nez v3, :cond_2
+ 
+-    const/4 v3, 0x4
++    const/4 v3, 0x2
+ 
+     :goto_2
+     if-eqz v3, :cond_3
+-- 
+2.55.0
+

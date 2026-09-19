@@ -1,0 +1,34 @@
+From 0dbd5e81c67b91451a03b0f98c96b72376f38246 Mon Sep 17 00:00:00 2001
+From: therealmharc <therealmharc@gmail.com>
+Date: Thu, 10 Sep 2026 23:56:54 +0800
+Subject: [PATCH 04/10] Bypass portrait bokeh to use normal photo pipeline
+
+---
+ smali/i8/d0.smali | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/smali/i8/d0.smali b/smali/i8/d0.smali
+index c48646f9..63bab907 100644
+--- a/smali/i8/d0.smali
++++ b/smali/i8/d0.smali
+@@ -8422,7 +8422,7 @@
+     goto :goto_3
+ 
+     :cond_f
+-    new-instance v3, Li8/g0;
++    new-instance v3, Li8/k0;
+ 
+     invoke-virtual {p0}, Li8/a;->m()LPf/a;
+ 
+@@ -8430,7 +8430,7 @@
+ 
+     iget-object v5, p0, Li8/d0;->m0:Li8/V0;
+ 
+-    invoke-direct {v3, p0, v4, v5}, Li8/e0;-><init>(Li8/d0;LPf/a;Li8/V0;)V
++    invoke-direct {v3, p0, v4, v5}, Li8/k0;-><init>(Li8/d0;LPf/a;Li8/V0;)V
+ 
+     goto :goto_2
+ 
+-- 
+2.55.0
+

@@ -1,0 +1,249 @@
+From b1ebd29d6465a5ad20d74aa9e6f830ded8664a0d Mon Sep 17 00:00:00 2001
+From: therealmharc <therealmharc@gmail.com>
+Date: Thu, 10 Sep 2026 23:57:32 +0800
+Subject: [PATCH 08/16] Enable LivePhoto support on all devices
+
+---
+ smali_classes2/Af/g.smali | 223 +-------------------------------------
+ 1 file changed, 2 insertions(+), 221 deletions(-)
+
+diff --git a/smali_classes2/Af/g.smali b/smali_classes2/Af/g.smali
+index 3cb15ac0..77dc7347 100644
+--- a/smali_classes2/Af/g.smali
++++ b/smali_classes2/Af/g.smali
+@@ -4962,230 +4962,11 @@
+ .end method
+ 
+ .method public static final j()Z
+-    .locals 10
++    .locals 1
+ 
+     const/4 v0, 0x1
+ 
+-    sget-boolean v1, LQd/b;->i:Z
+-
+-    sget-object v1, LQd/b$b;->a:LQd/b;
+-
+-    invoke-virtual {v1}, LQd/b;->A()V
+-
+-    sget v1, Ldj/a;->a:I
+-
+-    const-string v1, "ro.product.camera.livephoto.support"
+-
+-    const-string v2, "0"
+-
+-    invoke-static {v1, v2}, LRi/a;->a(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
+-
+-    move-result-object v1
+-
+-    invoke-static {v1}, Ljava/lang/Integer;->parseInt(Ljava/lang/String;)I
+-
+-    move-result v1
+-
+-    const/4 v2, 0x0
+-
+-    invoke-static {v1, v2}, Ldj/a;->a(II)Z
+-
+-    move-result v3
+-
+-    invoke-static {v1, v0}, Ldj/a;->a(II)Z
+-
+-    move-result v4
+-
+-    const/4 v5, 0x2
+-
+-    invoke-static {v1, v5}, Ldj/a;->a(II)Z
+-
+-    move-result v5
+-
+-    new-instance v6, Ljava/lang/StringBuilder;
+-
+-    const-string v7, "isDeviceSupportLivePhoto isSupportByMeminfo "
+-
+-    invoke-direct {v6, v7}, Ljava/lang/StringBuilder;-><init>(Ljava/lang/String;)V
+-
+-    invoke-virtual {v6, v5}, Ljava/lang/StringBuilder;->append(Z)Ljava/lang/StringBuilder;
+-
+-    invoke-virtual {v6}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+-
+-    move-result-object v6
+-
+-    const-string v7, "LivePhotoImp"
+-
+-    invoke-static {v7, v6}, Landroid/util/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
+-
+-    if-eqz v5, :cond_2
+-
+-    const-string v5, "getTotalMemory"
+-
+-    :try_start_0
+-    const-class v6, Landroid/os/Process;
+-
+-    const/4 v8, 0x0
+-
+-    invoke-virtual {v6, v5, v8}, Ljava/lang/Class;->getMethod(Ljava/lang/String;[Ljava/lang/Class;)Ljava/lang/reflect/Method;
+-
+-    move-result-object v6
+-
+-    invoke-virtual {v6, v8, v8}, Ljava/lang/reflect/Method;->invoke(Ljava/lang/Object;[Ljava/lang/Object;)Ljava/lang/Object;
+-
+-    move-result-object v6
+-
+-    check-cast v6, Ljava/lang/Long;
+-
+-    invoke-virtual {v6}, Ljava/lang/Long;->longValue()J
+-
+-    move-result-wide v5
+-    :try_end_0
+-    .catch Ljava/lang/NoSuchMethodException; {:try_start_0 .. :try_end_0} :catch_0
+-    .catch Ljava/lang/reflect/InvocationTargetException; {:try_start_0 .. :try_end_0} :catch_0
+-    .catch Ljava/lang/IllegalAccessException; {:try_start_0 .. :try_end_0} :catch_0
+-
+-    goto :goto_0
+-
+-    :catch_0
+-    move-exception v6
+-
+-    const-string v8, "ProcessCompat"
+-
+-    invoke-static {v8, v5, v6}, Landroid/util/Log;->e(Ljava/lang/String;Ljava/lang/String;Ljava/lang/Throwable;)I
+-
+-    const-wide/16 v5, 0x0
+-
+-    :goto_0
+-    const-wide/32 v8, 0x3fffffff
+-
+-    add-long/2addr v5, v8
+-
+-    const-wide/32 v8, -0x40000000
+-
+-    and-long/2addr v5, v8
+-
+-    const-wide/32 v8, 0x40000000
+-
+-    div-long/2addr v5, v8
+-
+-    long-to-int v5, v5
+-
+-    const-string v6, "isDeviceSupportLivePhoto memory "
+-
+-    invoke-static {v5, v6, v7}, LEa/s;->k(ILjava/lang/String;Ljava/lang/String;)V
+-
+-    const/16 v6, 0x8
+-
+-    if-lt v5, v6, :cond_0
+-
+-    const/4 v5, 0x5
+-
+-    :goto_1
+-    invoke-static {v1, v5}, Ldj/a;->a(II)Z
+-
+-    move-result v1
+-
+-    goto :goto_2
+-
+-    :cond_0
+-    const/4 v6, 0x6
+-
+-    const/4 v7, 0x4
+-
+-    if-ne v5, v6, :cond_1
+-
+-    invoke-static {v1, v7}, Ldj/a;->a(II)Z
+-
+-    move-result v1
+-
+-    goto :goto_2
+-
+-    :cond_1
+-    if-ne v5, v7, :cond_2
+-
+-    const/4 v5, 0x3
+-
+-    goto :goto_1
+-
+-    :cond_2
+-    move v1, v0
+-
+-    :goto_2
+-    const-string v5, "ro.product.mod_device"
+-
+-    const-string v6, ""
+-
+-    invoke-static {v5, v6}, LRi/a;->a(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
+-
+-    move-result-object v5
+-
+-    const-string v6, "_global"
+-
+-    invoke-virtual {v5, v6}, Ljava/lang/String;->contains(Ljava/lang/CharSequence;)Z
+-
+-    move-result v5
+-
+-    if-eqz v5, :cond_3
+-
+-    if-eqz v4, :cond_3
+-
+-    move v4, v1
+-
+-    goto :goto_3
+-
+-    :cond_3
+-    move v4, v2
+-
+-    :goto_3
+-    if-nez v5, :cond_7
+-
+-    if-eqz v3, :cond_4
+-
+-    goto :goto_6
+-
+-    :cond_4
+-    :goto_4
+-    sget-object v1, Ldj/c;->b:Ldj/b;
+-
+-    invoke-virtual {v1}, Ljava/util/ArrayList;->size()I
+-
+-    move-result v3
+-
+-    if-ge v2, v3, :cond_6
+-
+-    sget-object v3, Landroid/os/Build;->DEVICE:Ljava/lang/String;
+-
+-    invoke-virtual {v1, v2}, Ljava/util/ArrayList;->get(I)Ljava/lang/Object;
+-
+-    move-result-object v1
+-
+-    invoke-virtual {v3, v1}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
+-
+-    move-result v1
+-
+-    if-eqz v1, :cond_5
+-
+-    sput-boolean v0, Ldj/c;->a:Z
+-
+-    goto :goto_5
+-
+-    :cond_5
+-    add-int/2addr v2, v0
+-
+-    goto :goto_4
+-
+-    :cond_6
+-    :goto_5
+-    sget-boolean v1, Ldj/c;->a:Z
+-
+-    goto :goto_6
+-
+-    :cond_7
+-    move v1, v4
+-
+-    :goto_6
+-    return v1
++    return v0
+ .end method
+ 
+ .method public static k(Landroidx/fragment/app/i;Z)Ljava/lang/String;
+-- 
+2.55.0
+

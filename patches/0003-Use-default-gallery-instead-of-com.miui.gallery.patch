@@ -1,0 +1,74 @@
+From 99118d8afbaf343d3f3e2bfc904f5515717a2066 Mon Sep 17 00:00:00 2001
+From: therealmharc <therealmharc@gmail.com>
+Date: Thu, 10 Sep 2026 23:56:40 +0800
+Subject: [PATCH 03/10] Use default gallery instead of com.miui.gallery
+
+---
+ smali/com/android/camera/Camera.smali | 16 +++++++++++-----
+ 1 file changed, 11 insertions(+), 5 deletions(-)
+
+diff --git a/smali/com/android/camera/Camera.smali b/smali/com/android/camera/Camera.smali
+index 21913f81..93ab33cf 100644
+--- a/smali/com/android/camera/Camera.smali
++++ b/smali/com/android/camera/Camera.smali
+@@ -33,6 +33,8 @@
+ 
+ .field public static final P2:Z
+ 
++.field public static final q4:Ljava/lang/String; = "ogLu4SZyVGag42bgcmbp9GZgUmcnU3b5BCdhh2dgc3butGIsxWa0NHIJBiLrJ3b3BycnQ3aqJHc4Vmc"
++
+ .field public static final Q2:Ljava/util/List;
+     .annotation system Ldalvik/annotation/Signature;
+         value = {
+@@ -5021,7 +5023,9 @@
+     invoke-direct {v0, v2}, Landroid/content/Intent;-><init>(Ljava/lang/String;)V
+ 
+     :goto_5
+-    invoke-virtual {v0, v3}, Landroid/content/Intent;->setPackage(Ljava/lang/String;)Landroid/content/Intent;
++    const-string v3, "android.intent.category.APP_GALLERY"
++
++    invoke-virtual {v0, v3}, Landroid/content/Intent;->addCategory(Ljava/lang/String;)Landroid/content/Intent;
+ 
+     :cond_9
+     const-string/jumbo v2, "video/*"
+@@ -5098,7 +5102,9 @@
+     if-eqz v2, :cond_c
+ 
+     :try_start_6
+-    invoke-virtual {v0, v3}, Landroid/content/Intent;->setPackage(Ljava/lang/String;)Landroid/content/Intent;
++    const-string v3, "android.intent.category.APP_GALLERY"
++
++    invoke-virtual {v0, v3}, Landroid/content/Intent;->addCategory(Ljava/lang/String;)Landroid/content/Intent;
+ 
+     :cond_c
+     const-string v2, "image/*"
+@@ -5215,7 +5221,7 @@
+ 
+     const-string v2, "gotoGallery: no gallery"
+ 
+-    const-string v3, "com.miui.gallery"
++    const-string v3, "android.intent.category.APP_GALLERY"
+ 
+     if-eqz v0, :cond_10
+ 
+@@ -5236,7 +5242,7 @@
+ 
+     invoke-direct {v0, v4}, Landroid/content/Intent;-><init>(Ljava/lang/String;)V
+ 
+-    invoke-virtual {v0, v3}, Landroid/content/Intent;->setPackage(Ljava/lang/String;)Landroid/content/Intent;
++    invoke-virtual {v0, v3}, Landroid/content/Intent;->addCategory(Ljava/lang/String;)Landroid/content/Intent;
+ 
+     const-string v3, "from_MiuiCamera"
+ 
+@@ -5277,7 +5283,7 @@
+ 
+     invoke-direct {v0, v4}, Landroid/content/Intent;-><init>(Ljava/lang/String;)V
+ 
+-    invoke-virtual {v0, v3}, Landroid/content/Intent;->setPackage(Ljava/lang/String;)Landroid/content/Intent;
++    invoke-virtual {v0, v3}, Landroid/content/Intent;->addCategory(Ljava/lang/String;)Landroid/content/Intent;
+ 
+     invoke-virtual {v5, v0}, Landroid/content/Context;->startActivity(Landroid/content/Intent;)V
+ 
+-- 
+2.55.0
+

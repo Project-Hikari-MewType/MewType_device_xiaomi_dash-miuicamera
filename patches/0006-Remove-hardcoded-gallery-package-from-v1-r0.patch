@@ -1,0 +1,27 @@
+From a6126ddef14261b91611509540ac03d5d202bcab Mon Sep 17 00:00:00 2001
+From: therealmharc <therealmharc@gmail.com>
+Date: Thu, 10 Sep 2026 23:57:15 +0800
+Subject: [PATCH 06/10] Remove hardcoded gallery package from v1/r0
+
+---
+ smali/v1/r0.smali | 4 ----
+ 1 file changed, 4 deletions(-)
+
+diff --git a/smali/v1/r0.smali b/smali/v1/r0.smali
+index 99c97c96..904383ae 100644
+--- a/smali/v1/r0.smali
++++ b/smali/v1/r0.smali
+@@ -140,10 +140,6 @@
+     invoke-direct {v1, v5, p2}, Landroid/content/Intent;-><init>(Ljava/lang/String;Landroid/net/Uri;)V
+ 
+     :goto_0
+-    const-string p2, "com.miui.gallery"
+-
+-    invoke-virtual {v1, p2}, Landroid/content/Intent;->setPackage(Ljava/lang/String;)Landroid/content/Intent;
+-
+     const-string p2, "from_MiuiCamera"
+ 
+     invoke-virtual {v1, p2, v2}, Landroid/content/Intent;->putExtra(Ljava/lang/String;Z)Landroid/content/Intent;
+-- 
+2.55.0
+
